@@ -1,7 +1,7 @@
 require_relative('../db/sql_runner.rb')
 
 class Ticket
-  attr_reader :id 
+  attr_reader :id
   attr_accessor :customer_id, :film_id
 
   def initialize(options)
@@ -27,10 +27,27 @@ class Ticket
     SqlRunner.run(sql, values)
   end
 
+  def delete()
+    sql = "DELETE FROM tickets WHERE id = $1"
+    values = [@id]
+    SqlRunner.run(sql, values)
+  end
+
   ## Class Methods
   def self.delete_all()
     sql = "DELETE FROM tickets"
     SqlRunner.run(sql)
+  end
+
+  def self.all()
+    sql = "SELECT * FROM tickets"
+    tickets = SqlRunner.run(sql)
+    return Ticket.map_items(tickets)
+  end
+
+  def self.map_items(data)
+    result = data.map{ |ticket| Ticket.new(ticket)}
+    return result
   end
 
 end

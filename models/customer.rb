@@ -27,11 +27,28 @@ class Customer
     SqlRunner.run(sql, values)
   end
 
+  def delete()
+    sql = "DELETE FROM customers WHERE id = $1"
+    values =[@id]
+    SqlRunner.run(sql, values)
+  end
+
 ## Class Methods
 
   def self.delete_all()
     sql = "DELETE FROM customers"
     SqlRunner.run(sql)
+  end
+
+  def self.all()
+    sql = "SELECT * FROM customers"
+    customers = SqlRunner.run(sql)
+    return Ticket.map_items(customers)
+  end
+
+  def self.map_items(data)
+    result = data.map{ |customer| Customer.new(customer)}
+    return result
   end
 
 end

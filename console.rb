@@ -31,6 +31,13 @@ customer3.save()
 customer3.name = 'Anna Henderson'
 customer3.update()
 
+customer4 = Customer.new({
+  'name' => 'Colin Bell',
+  'funds' => 80
+  })
+
+customer4.save()
+
 ##### Films Created and Saved
 film1 = Film.new({
   'title' => 'Shaun of the Dead',
@@ -76,6 +83,12 @@ ticket3 = Ticket.new({
   })
 
 ticket3.save()
+
+customer3.delete()
+
+all_customers = Customer.all()
+all_films = Film.all()
+all_tickets = Ticket.all()
 
 binding.pry
 nil
