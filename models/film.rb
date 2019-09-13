@@ -33,6 +33,16 @@ class Film
     SqlRunner.run(sql, values)
   end
 
+  def customers()
+    sql = "SELECT customers.* FROM customers
+          INNER JOIN tickets
+          ON tickets.customer_id = customers.id
+          WHERE tickets.film_id = $1"
+    values = [@id]
+    customers = SqlRunner.run(sql, values)
+    return Customer.map_items(customers)
+  end
+
   ## Class Methods
   def self.delete_all()
     sql = "DELETE FROM films"
