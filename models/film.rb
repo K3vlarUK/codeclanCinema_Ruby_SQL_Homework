@@ -43,6 +43,12 @@ class Film
     return Customer.map_items(customers)
   end
 
+  ## Check how many customers are going to watch a certain film
+  def how_many_customers?()
+    customers_booked = customers()
+    return customers.length()
+  end
+
   ## Class Methods
   def self.delete_all()
     sql = "DELETE FROM films"
@@ -52,7 +58,13 @@ class Film
   def self.all()
     sql = "SELECT * FROM films"
     films = SqlRunner.run(sql)
-    return Ticket.map_items(films)
+    return Film.map_items(films)
+  end
+
+  def self.all_by_price()
+    sql = "SELECT * FROM films ORDER BY price"
+    films = SqlRunner.run(sql)
+    return Film.map_items(films)
   end
 
   def self.map_items(data)

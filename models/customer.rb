@@ -43,8 +43,15 @@ class Customer
     return Film.map_items(films)
   end
 
+  # Buying tickets should decrease the funds of the customer by the price
   def pay_for_tickets(film)
     @funds -= film.price
+  end
+
+  ## Check how many tickets were bought by a customer
+  def how_many_tickets?()
+    films_viewed = films()
+    return films_viewed.length()
   end
 
 ## Class Methods
@@ -57,7 +64,7 @@ class Customer
   def self.all()
     sql = "SELECT * FROM customers"
     customers = SqlRunner.run(sql)
-    return Ticket.map_items(customers)
+    return Customer.map_items(customers)
   end
 
   def self.map_items(data)

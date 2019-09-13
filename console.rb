@@ -65,7 +65,7 @@ film3.update()
 #### Tickets created and saved
 ticket1 = Ticket.new({
   'customer_id' => customer1.id(),
-  'film_id' => film1.id()
+  'film_id' => film2.id()
   })
 customer1.pay_for_tickets(film1)
 customer1.update()
@@ -94,6 +94,7 @@ customer3.delete()
 
 all_customers = Customer.all()
 all_films = Film.all()
+all_films_by_price = Film.all_by_price()
 all_tickets = Ticket.all()
 
 binding.pry
