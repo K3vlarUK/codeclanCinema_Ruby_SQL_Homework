@@ -43,6 +43,10 @@ class Customer
     return Film.map_items(films)
   end
 
+  def pay_for_tickets(film)
+    @funds -= film.price
+  end
+
 ## Class Methods
 
   def self.delete_all()
