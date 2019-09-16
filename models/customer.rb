@@ -43,9 +43,12 @@ class Customer
     return Film.map_items(films)
   end
 
-  # Buying tickets should decrease the funds of the customer by the price
-  def pay_for_tickets(film)
+  # Buying tickets should decrease the funds of the customer by the price / Now also increases tickets sold for selected screening.
+  def pay_for_tickets(film, screening)
     @funds -= film.price
+    screening.tickets_sold += 1
+    screening.update()
+    update()
   end
 
   ## Check how many tickets were bought by a customer

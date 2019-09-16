@@ -63,37 +63,10 @@ film3.save()
 film3.price = 5
 film3.update()
 
-#### Tickets created and saved
-ticket1 = Ticket.new({
-  'customer_id' => customer1.id(),
-  'film_id' => film2.id()
-  })
-customer1.pay_for_tickets(film1)
-customer1.update()
-
-ticket1.save()
-
-ticket2 = Ticket.new({
-  'customer_id' => customer1.id(),
-  'film_id' => film3.id()
-  })
-customer1.pay_for_tickets(film3)
-customer1.update()
-
-ticket2.save()
-
-ticket3 = Ticket.new({
-  'customer_id' => customer4.id(),
-  'film_id' => film2.id()
-  })
-customer4.pay_for_tickets(film2)
-customer4.update()
-
-ticket3.save()
-
-customer3.delete()
+#### Added Screenings
 
 screening1 = Screening.new({
+  'film_id' => film1.id(),
   'film_title' => film1.title(),
   'start_time' => '15:00'
   })
@@ -101,6 +74,7 @@ screening1 = Screening.new({
 screening1.save()
 
 screening2 = Screening.new({
+  'film_id' => film2.id(),
   'film_title' => film2.title(),
   'start_time' => '17:00'
   })
@@ -108,11 +82,42 @@ screening2 = Screening.new({
 screening2.save()
 
 screening3 = Screening.new({
+  'film_id' => film3.id(),
   'film_title' => film3.title(),
   'start_time' => '19:00'
   })
 
 screening3.save()
+
+#### Tickets created and saved
+ticket1 = Ticket.new({
+  'customer_id' => customer1.id(),
+  'film_id' => film2.id(),
+  'screening_id' => screening2.id()
+  })
+customer1.pay_for_tickets(film2, screening2)
+
+ticket1.save()
+
+ticket2 = Ticket.new({
+  'customer_id' => customer1.id(),
+  'film_id' => film3.id(),
+  'screening_id' => screening3.id()
+  })
+customer1.pay_for_tickets(film3, screening3)
+
+ticket2.save()
+
+ticket3 = Ticket.new({
+  'customer_id' => customer4.id(),
+  'film_id' => film2.id(),
+  'screening_id' => screening2.id()
+  })
+customer4.pay_for_tickets(film2, screening2)
+
+ticket3.save()
+
+customer3.delete()
 
 all_customers = Customer.all()
 all_films = Film.all()
