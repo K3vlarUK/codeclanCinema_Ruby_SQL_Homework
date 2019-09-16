@@ -35,10 +35,6 @@ class Screening
     SqlRunner.run(sql, values)
   end
 
-  def increase_ticket_sold()
-    @tickets_sold += 1
-  end
-
   ## Class Methods
 
   def self.delete_all()
